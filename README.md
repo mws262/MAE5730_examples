@@ -27,3 +27,5 @@ Three masses attracted by gravity. Includes:
 Full problem statement is inside the folder. Includes:
 * Derivation script
 * Animation
+[![animation video](https://img.youtube.com/vi/f4t5e0GKEBk/0.jpg)](https://www.youtube.com/watch?v=f4t5e0GKEBk)
+

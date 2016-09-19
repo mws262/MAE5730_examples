@@ -6,7 +6,7 @@
 clear all; close all
 % derive;
 
-t = transpose(0:0.01:2*pi); % Time interval.
+t = transpose(0:0.01:12*pi); % Time interval.
 
 phi_dot = phidot(t); % Evaluate phidot using the function we wrote in derive.m
 phi = cumtrapz(t,phi_dot); % Integrate angular rate over time to get phi. No ode45 required!

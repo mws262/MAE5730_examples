@@ -1,4 +1,4 @@
-# Matt's example code for MAE 4780/5780 * Intermediate Dynamics
+# Matt's example code for MAE 4780/5780 - Intermediate Dynamics
 Various dynamics and MATLAB examples made while TAing for Andy Ruina's intermediate dynamics.
 
 My conventions for files typically are:

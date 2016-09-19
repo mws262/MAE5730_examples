@@ -3,9 +3,9 @@ Various dynamics and MATLAB examples made while TAing for Andy Ruina's intermedi
 
 My conventions for files typically are:
 
-* MAIN * usually the file that starts everything
-* RHS * a function which can by integrated with ODE45
-* derive/deriver * A script which derives equations of motion (usually) auto-writes a MATLAB function.
+* MAIN - usually the file that starts everything
+* RHS - a function which can by integrated with ODE45
+* derive/deriver - A script which derives equations of motion (usually) auto-writes a MATLAB function.
 
 ### Lectures 1 & 2
 Examples include:

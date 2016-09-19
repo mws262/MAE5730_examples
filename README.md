@@ -26,6 +26,7 @@ Three masses attracted by gravity. Includes:
 4 masses on a plate, some moving, some not. Find plate motion for 0 angular momentum.
 Full problem statement is inside the folder. Includes:
 * Derivation script
-* Animation
+* Animation   
+
 [![animation video](https://img.youtube.com/vi/f4t5e0GKEBk/0.jpg)](https://www.youtube.com/watch?v=f4t5e0GKEBk)
 

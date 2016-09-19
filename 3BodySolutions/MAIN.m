@@ -13,14 +13,14 @@ solveON = false; % false -- just run initial conditions. true -- try to find per
                 % Note, that if you start with something that's already
                 % periodic, solving won't really do anything. Alter a
                 % periodic one by a little.
-periodsToRun = 3; % How many periods of the solution to run if we're just viewing.
+periodsToRun = 5; % How many periods of the solution to run if we're just viewing.
 
 %%% Set up initial conditions %%%
 % State vector structure:
 % [x1,y1,x2,y2,...,vx1,vy1,vx2,...]
 % 
-% initPos = [1,0, -0.5,sqrt(3)/2, -0.5,-sqrt(3)/2];
-% initVel = 0.75*[0,1, -sqrt(3)/2,-0.5,  sqrt(3)/2,-0.5];
+% initPos = 0.4*[1,0, -0.5,sqrt(3)/2, -0.5,-sqrt(3)/2] + rand(1,6)-0.5;
+% initVel = 0.75*[0,1, -sqrt(3)/2,-0.5,  sqrt(3)/2,-0.5]+ rand(1,6)-0.5;
 % tend = 8;
 % inits = [initPos,initVel];
 

@@ -13,7 +13,7 @@ p3 = plot(0,0,'.','MarkerSize',50);
 p3tail = plot(0,0,'--','LineWidth',2,'Color',0.8*p3.Color);
 hold off
 
-axis([-1.8,1.8,-1.8,1.8]);
+axis([-2.2,2.2,-2.2,2.2]);
 
 currTime = 0;
 tic;

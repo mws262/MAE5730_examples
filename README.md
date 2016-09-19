@@ -20,7 +20,9 @@ Three masses attracted by gravity. Includes:
 * Derivation script
 * Animation and plotting of solutions
 * FSOLVE root finding to look for periodic solutions given an initial guess
-* A file containing ~15 periodic solutions I found that can be played back.
+* A file containing ~15 periodic solutions I found that can be played back.   
+
+[![3body animation video](https://img.youtube.com/vi/8_RRZcqBEAc/0.jpg)](https://www.youtube.com/watch?v=8_RRZcqBEAc)
 
 ### Handout problem 14
 4 masses on a plate, some moving, some not. Find plate motion for 0 angular momentum.
@@ -28,5 +30,5 @@ Full problem statement is inside the folder. Includes:
 * Derivation script
 * Animation   
 
-[![animation video](https://img.youtube.com/vi/f4t5e0GKEBk/0.jpg)](https://www.youtube.com/watch?v=f4t5e0GKEBk)
+[![angular momentum animation video](https://img.youtube.com/vi/f4t5e0GKEBk/0.jpg)](https://www.youtube.com/watch?v=f4t5e0GKEBk)
 

@@ -32,3 +32,6 @@ Full problem statement is inside the folder. Includes:
 
 [![angular momentum animation video](https://img.youtube.com/vi/f4t5e0GKEBk/0.jpg)](https://www.youtube.com/watch?v=f4t5e0GKEBk)
 
+### Handout problem 19
+Weird derivation of simple pendulum with y being horizontal right and x being vertical down. Comes up with a single ODE for y acceleration.
+* Mostly about the derivation -- lots of comments in derive.m

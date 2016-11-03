@@ -40,3 +40,7 @@ Weird derivation of simple pendulum with y being horizontal right and x being ve
 * Projectile launched with quadratic drag.
 * Minimize velocity and find launch angle required to hit a target.
 * fmincon with a nonlinear constraint.
+
+### N Spring-mass
+* Derive equations symbolically for n-masses connected by springs with a wall on either side.
+* Simulate and animate.

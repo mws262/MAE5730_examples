@@ -36,7 +36,7 @@ Full problem statement is inside the folder. Includes:
 Weird derivation of simple pendulum with y being horizontal right and x being vertical down. Comes up with a single ODE for y acceleration.
 * Mostly about the derivation -- lots of comments in derive.m
 
-%%% OptimVelLaunch
+### OptimVelLaunch
 * Projectile launched with quadratic drag.
 * Minimize velocity and find launch angle required to hit a target.
 * fmincon with a nonlinear constraint.

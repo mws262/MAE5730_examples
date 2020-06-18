@@ -61,5 +61,15 @@ matlabFunction(potE, 'File', 'potE', 'Vars', {invars, G, m1, m2, m3});
 matlabFunction(kinE, 'File', 'kinE', 'Vars', {invars, G, m1, m2, m3});
 matlabFunction(totE, 'File', 'totE', 'Vars', {invars, G, m1, m2, m3});
 
+% From here on assuming COM stays at the origin.
+x3sol = (m1 * x1 + m2 * x2)/m3;
+y3sol = (m1 * y1 + m2 * y2)/m3;
+xdot3sol = (m1 * xdot1 + m2 * xdot2)/m3;
+ydot3sol = (m1 * ydot1 + m2 * ydot2)/m3;
+p3vars = [x3, y3, xdot3, ydot3];
+p3varsSol = [x3sol, y3sol, xdot3sol, ydot3sol];
 
+a1sol = subs(a1, p3vars, p3varsSol);
+a2sol = subs(a2, p3vars, p3varsSol);
 
+matlabFunction([a1sol;a2sol], 'File', 'accelMin');

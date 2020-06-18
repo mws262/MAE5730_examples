@@ -20,7 +20,7 @@ solveON = false; % false -- just run initial conditions. true -- try to find per
                 % Note, that if you start with something that's already
                 % periodic, solving won't really do anything. Alter a
                 % periodic one by a little.
-periodsToRun = 10000.0; % How many periods of the solution to run if we're just viewing.
+periodsToRun = 1.0; % How many periods of the solution to run if we're just viewing.
 
 %%% Set up initial conditions %%%
 % State vector structure:
@@ -41,8 +41,9 @@ p.G = 1;
 p.m1 = 1;
 p.m2 = 1;
 p.m3 = 1;
-
-% Vis options
+tend = 10;
+inits = [ 
+    1.0000         0   -1.0000         0         0         0         0    1.1402         0   -1.1402         0         0]; 
 p.tfactor = 1; % Animation speedup factor
 p.showSolverGuesses = true; % Plot the tested solutions as the solver is going.
 

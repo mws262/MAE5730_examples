@@ -62,7 +62,7 @@ switch solNum
         % 3 diving into the middle
         disp('Three diving into middle. Can tune velocity multiplier for more solutions.');
         initPos = [1,0, -0.5,sqrt(3)/2, -0.5,-sqrt(3)/2];
-        initVel = 0.5*[0,1, -sqrt(3)/2,-0.5,  sqrt(3)/2,-0.5];
+        initVel = 1.07*[0,1, -sqrt(3)/2,-0.5,  sqrt(3)/2,-0.5];
         inits = [initPos,initVel];
         tend = 12;
     case 6

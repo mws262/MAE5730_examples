@@ -2,7 +2,7 @@ function fig = animate( tarray,zarray,p )
 % Given tarray and zarray from ode45, animate the 3-body problem.
 
 fig = figure;
-fig.Position = [1000,100,800,800];
+fig.Position = [1000,100,1400,1400];
 
 hold on
 p1 = plot(0,0,'.','MarkerSize',50); % Could use comet instead
@@ -48,7 +48,7 @@ while currTime*p.tfactor < tarray(end)
     
     drawnow;
     
-    currTime = toc;
+    currTime = currTime + 0.01; %toc;
 end
 end
 

@@ -1,15 +1,16 @@
 function fig = plot3body(zarrayguess,varargin)
 
-fig = figure;
+fig = gcf;
+fig.Color = [1, 1, 1];
 fig.Position = [100,100,1000,1000];
 
 hold on
 g1 = plot(zarrayguess(end,1),zarrayguess(end,2),'.','MarkerSize',30); % Could use comet instead
-g1tail = plot(zarrayguess(:,1),zarrayguess(:,2),'--','LineWidth',2,'Color',[0.8*g1.Color,0.5]);
+g1tail = plot(zarrayguess(:,1),zarrayguess(:,2),'-','LineWidth',1,'Color',[0.8*g1.Color,0.8]);
 g2 = plot(zarrayguess(end,3),zarrayguess(end,4),'.','MarkerSize',30);
-g2tail = plot(zarrayguess(:,3),zarrayguess(:,4),'--','LineWidth',2,'Color',[0.8*g2.Color,0.5]);
+g2tail = plot(zarrayguess(:,3),zarrayguess(:,4),'-','LineWidth',1,'Color',[0.8*g2.Color,0.8]);
 g3 = plot(zarrayguess(end,5),zarrayguess(end,6),'.','MarkerSize',30);
-g3tail = plot(zarrayguess(:,5),zarrayguess(:,6),'--','LineWidth',2,'Color',[0.8*g3.Color,0.5]);
+g3tail = plot(zarrayguess(:,5),zarrayguess(:,6),'-','LineWidth',1,'Color',[0.8*g3.Color,0.8]);
 
 if size(varargin) > 0
     zarray = varargin{1};
@@ -21,9 +22,7 @@ if size(varargin) > 0
     p3tail = plot(zarray(:,5),zarray(:,6),'--','LineWidth',3,'Color',0.8*g3.Color);
 end
 
-hold off
-
-axis([-1.8,1.8,-1.8,1.8]);
+% axis([-1.8,1.8,-1.8,1.8]);
 
 end
 

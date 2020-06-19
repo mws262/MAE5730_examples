@@ -46,6 +46,8 @@ f32 = text(p3(1) - 0.9, p3(2) + 0.6, '$-\vec{F}_{3/2}$', 'Interpreter', 'latex',
 
 iax = text(3.1, 0.2, '$\hat{i}$', 'Interpreter', 'latex', 'FontSize', 30);
 jax = text(0, 3.3, '$\hat{j}$', 'Interpreter', 'latex', 'FontSize', 30);
+orig = text(0.05, 0.2, '$\mathcal O$', 'Interpreter', 'latex', 'FontSize', 30);
+plot(0,0, 'k.', 'MarkerSize', 20);
 
 ax.XAxisLocation = 'origin';
 ax.YAxisLocation = 'origin';

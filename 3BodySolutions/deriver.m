@@ -42,8 +42,10 @@ matlabFunction(a,'file','accel');
 
 com = (m1 * p1 + m2 * p2 + m3 * p3) / (m1 + m2 + m3);
 
+invars = [x1, y1, x2, y2, x3, y3, xdot1, ydot1, xdot2, ydot2, xdot3, ydot3];
+
 angMom = dot(cross([p1 - com; 0], m1 * [v1; 0]) + cross([p2 - com; 0], m2 * [v2; 0]) + cross([p3 - com; 0], m3 * [v3; 0]), [0;0;1]);
-matlabFunction(angMom, 'file', 'angMom');
+matlabFunction(angMom, 'File', 'angMom', 'Vars', {invars, G, m1, m2, m3});
 
 potE = -G * m1 * m2 / norm(r1_2) + ...
     -G * m1 * m3 / norm(r1_3) + ...

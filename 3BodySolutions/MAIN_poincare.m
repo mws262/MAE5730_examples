@@ -15,8 +15,8 @@ addpath visualization;
 
 %%% CHANGE SOLUTIONS HERE %%%
 for i = 5:5
-solutionNumber = i; % Which solution would you like to view?
-solveON = false; % false -- just run initial conditions. true -- try to find periodic solution using initial conditions as the guess.
+solutionNumber = 18; % Which solution would you like to view?
+solveON = true; % false -- just run initial conditions. true -- try to find periodic solution using initial conditions as the guess.
                 % Note, that if you start with something that's already
                 % periodic, solving won't really do anything. Alter a
                 % periodic one by a little.
@@ -41,9 +41,6 @@ p.G = 1;
 p.m1 = 1;
 p.m2 = 1;
 p.m3 = 1;
-tend = 10;
-inits = [ 
-    1.0000         0   -1.0000         0         0         0         0    1.1402         0   -1.1402         0         0]; 
 p.tfactor = 1; % Animation speedup factor
 p.showSolverGuesses = true; % Plot the tested solutions as the solver is going.
 

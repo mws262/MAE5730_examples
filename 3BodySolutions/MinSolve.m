@@ -12,11 +12,14 @@ par.G = 1;
 par.m1 = 1;
 par.m2 = 1;
 par.m3 = 1;
-solution = 1000 * ones(6, 1); % something that will fail initially.
-
-while (~isVelICValid(solution(4), solution(5), solution(6)) || ~isP2Valid(solution(2), solution(3)) || ~solution(1) > 0.01 || (fullIC(5) == 0 && fullIC(6) == 0))
-    guess = 2 * rand(6,1) - 1;
+solution = 0 * ones(6, 1); % something that will fail initially.
+fullIC = ones(12, 1);
+% Temporarily skipping the redundancy checks.
+% ~isVelICValid(solution(4), solution(5), solution(6)) || ~isP2Valid(solution(2), solution(3)) || 
+while (~(solution(1) > 0.01) || (abs(fullIC(5)) < 1e-5 && abs(fullIC(6)) < 1e-5))
+    guess = 1 * rand(6,1) - 0.5;
     guess(1) = 10;
+    guess(3:end) = guess(3:end) * 2;
 
     while (~isVelICValid(guess(4), guess(5), guess(6)) || ~isP2Valid(guess(2), guess(3)))
     guess = 2 * rand(6,1) - 1;    

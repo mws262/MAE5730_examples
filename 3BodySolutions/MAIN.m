@@ -16,7 +16,7 @@ close all;clear all
 addpath visualization;
 
 %%% CHANGE SOLUTIONS HERE %%%
-solutionNumber = 3; % Which solution would you like to view?
+solutionNumber = 4; % Which solution would you like to view?
 solveON = false; % false -- just run initial conditions. true -- try to find periodic solution using initial conditions as the guess.
                 % Note, that if you start with something that's already
                 % periodic, solving won't really do anything. Alter a
@@ -96,7 +96,7 @@ plot(p2(end, 1), p2(end, 2), '.', 'MarkerSize', 5);
 plot(p3(end, 1), p3(end, 2), '.', 'MarkerSize', 5);
 
  plot3body(zarray);
-
+animate(tarray,zarray,p)
 drawnow();
 
 % Cross product to decide which side of the section the particle is on.

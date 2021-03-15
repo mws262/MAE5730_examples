@@ -46,6 +46,9 @@ yd2 = velrange * (rand - 0.5) - yd1/2;
 xd3 = -xd1 - xd2;
 yd3 = -yd1 - yd2;
 
+% com = [x1 + x2 + x3, y1 + y2 + y3]
+% comV = [xd1 + xd2 + xd3, yd1 + yd2 + yd3]
+
 dist12 = sqrt((x1 - x2)^2 + (y1 - y2)^2);
 dist13 = sqrt((x1 - x3)^2 + (y1 - y3)^2);
 dist23 = sqrt((x3 - x2)^2 + (y3 - y2)^2);
@@ -64,7 +67,7 @@ emax = kemax + pemax;
 
 inits = [x1, y1, x2, y2, x3, y3, xd1, yd1, xd2, yd2, xd3, yd3];
 
-% inits = [1.0000         0   -0.5863    0.8101    0.4137   -0.8101         0    0.0784    0.1551   -0.1043   -0.1551    0.0259]
+ inits = [1.0000         0   -1    0. 0.5         0.2    0    0 0 0 0 0]
 %%%% Set up system parameters %%%%
 p.G = 1;
 p.m1 = 1;
@@ -85,8 +88,8 @@ tend = 15;
 % [tarray,zarray] = ode45(@RHS,[0,tend],inits,p.odeOpts,p);
 
 %     animate(tarray,zarray,p);
-   plot3body(zarray);
-
+%    plot3body(zarray);
+plot3body(zarray)
 fprintf('time: %0.4f, e: %0.4f, ei: %0.4f\n', te, pot + ke, emax)
 
 if (te > 14.9)

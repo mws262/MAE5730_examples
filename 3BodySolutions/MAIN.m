@@ -116,6 +116,8 @@ inits = [inits(1:2:length(inits)/2); x; inits( 2:2:length(inits)/2); y;
 %+ (rand(17, 1) - 0.5) * 0.00
 % guess = [    3.8208
 n = 4
+p.G = 1;
+p.m = ones(n+1, 1);
 if p.showSolverGuesses
     solvePlots = initSolvePlots(n + 1); % We can show the progress of the solutions as fsolve is going.
 end
@@ -164,10 +166,10 @@ xd = -sin(ang) .* (rand(n,1) - 0.5) * 1.5 + cos(ang) .* (rand(n,1) - 0.5) * 0.3;
 yd = cos(ang) .* (rand(n,1) - 0.5) * 1.5 + sin(ang) .* (rand(n,1) - 0.5) * 0.3;
 t = 3 + (rand() - 0.5) * 2;
 guess = [xs; ys; xd; yd; t];
-load('5body_legit.mat', 'solution');
-
-guess = solution + (rand(length(solution), 1) - 0.5) * 0.8;
-% guess = solution
+% load('5body_legit.mat', 'solution');
+% 
+% guess = solution + (rand(length(solution), 1) - 0.5) * 0.8;
+guess = solution
 % guess = [    0.9634
 %     0.0084
 %    -0.9582
@@ -198,7 +200,7 @@ elseif fval < 0.05 || flag == 0
 end
 catch MEException
     disp('ere');
-%     throw(MEException)
+    throw(MEException)
 end
 end
 

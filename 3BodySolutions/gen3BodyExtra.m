@@ -215,7 +215,7 @@ p.G = 1;
 p.m = ones(3, 1);
 opt = odeset('RelTol', 1e-10, 'AbsTol', 1e-10);
 [~, zarray] = ode45(@nbody_rhs, [0,  tend], inits, opt, p);
-
+close all;
 for i = 1:length(inits)/4
     pl = plot(zarray(:, i), zarray(:, length(inits)/4 + i));
     hold on;
@@ -228,26 +228,32 @@ fig = gcf;
 fig.Color = [1,1,1];
 axis equal
 
-% rho = 1/sqrt(2) * (p1 - p2);
-% lambda = 1/sqrt(6) * (p1 + p2 - 2*p3);
-% rho_magsq = sum(rho.^2, 2);
-% lambda_magsq = sum(lambda.^2, 2);
-%
-% Rsq = rho_magsq + lambda_magsq;
-%
-% n = [-2 * dot(rho, lambda, 2)./Rsq, (lambda_magsq - rho_magsq)./Rsq, sum(2 * cross([rho, zeros(size(rho,1), 1)], [lambda, zeros(size(rho,1), 1)]), 2)./Rsq];
-%
-% fig = figure;
-% fig.Color = [1,1,1];
-% ax = axes;
-% shapeSphPl = plot3(n(:, 1), n(:,2), n(:, 3), 'r');
-% shapeSphPl.LineWidth = 4;
-% hold on;
-% [Xsph, Ysph, Zsph] = sphere(25);
-% sph = surf(0.99*Xsph, 0.99*Ysph, 0.99*Zsph);
-% sph.EdgeAlpha = 0.3;
-% sph.FaceAlpha = 0.5;
-% axis equal
-% ax.Visible = false;
+p1 = zarray(:, [1,4]);
+p2 = zarray(:, [2,5]);
+p3 = zarray(:, [3,6]);
+
+figure;
+
+rho = 1/sqrt(2) * (p1 - p2);
+lambda = 1/sqrt(6) * (p1 + p2 - 2*p3);
+rho_magsq = sum(rho.^2, 2);
+lambda_magsq = sum(lambda.^2, 2);
+
+Rsq = rho_magsq + lambda_magsq;
+
+n = [-2 * dot(rho, lambda, 2)./Rsq, (lambda_magsq - rho_magsq)./Rsq, sum(2 * cross([rho, zeros(size(rho,1), 1)], [lambda, zeros(size(rho,1), 1)]), 2)./Rsq];
+
+fig = figure;
+fig.Color = [1,1,1];
+ax = axes;
+shapeSphPl = plot3(n(:, 1), n(:,2), n(:, 3), 'r');
+shapeSphPl.LineWidth = 4;
+hold on;
+[Xsph, Ysph, Zsph] = sphere(25);
+sph = surf(0.99*Xsph, 0.99*Ysph, 0.99*Zsph);
+sph.EdgeAlpha = 0.3;
+sph.FaceAlpha = 0.5;
+axis equal
+ax.Visible = false;
 
 end

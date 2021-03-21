@@ -9,9 +9,10 @@ y = soln(n/4 + 1:n/2);
 xd = soln(n/2 + 1:3*n/4);
 yd = soln(3*n/4 + 1:n);
 
-init = [x;-sum(x);y;-sum(y);xd;-sum(xd);yd;-sum(yd)];
+init = [x;;y;xd;yd];
+% init = [x;-sum(x);y;-sum(y);xd;-sum(xd);yd;-sum(yd)];
 
-if any(abs(init(1:(length(init)/2))) > 3.5) % soln(end) < 0.1 ||
+if any(abs(init(1:(length(init)/2))) > 11.5) % soln(end) < 0.1 ||
        disp(['stuff too big ', num2str(max(abs(init(1:(length(init)/2)))))]); 
            errID = 'myComponent:inputError';
     msgtext = 'Input does not have the expected format.';
@@ -27,9 +28,9 @@ end
 %     te = soln(end);
 % end
 dur = toc;
-
 n = n/4;
-fin = [zarray(:, 1:n), zarray(:, n + 2:2*n + 1), zarray(:, 2*n + 3:3*n + 2), zarray(:, 3*n + 4:4*n + 3)];
+% fin = [zarray(:, 1:n), zarray(:, n + 2:2*n + 1), zarray(:, 2*n + 3:3*n + 2), zarray(:, 3*n + 4:4*n + 3)];
+fin = zarray;
 defect = [fin(end,:) - fin(1,:)]; % 100*(te - soln(end)), 
 fprintf('.');
 % 

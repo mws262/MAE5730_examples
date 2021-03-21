@@ -40,18 +40,18 @@ p.showSolverGuesses = true; % Plot the tested solutions as the solver is going.
 
 % Solver/integration options
 p.odeOpts = odeset;
-p.odeOpts.RelTol = 1e-5;
-p.odeOpts.AbsTol = 1e-5;
+p.odeOpts.RelTol = 1e-10;
+p.odeOpts.AbsTol = 1e-10;
 
 p.fsolveOpts = optimset('fsolve');
 p.fsolveOpts.Algorithm = 'levenberg-marquardt'; % fsolve will default to this anyway after a few seconds and a warning message.
-p.fsolveOpts.TolX = 1e-4;
-p.fsolveOpts.TolX = 1e-4;
+p.fsolveOpts.TolX = 1e-10;
+p.fsolveOpts.TolFun = 1e-10;
 
 p.fsolveOpts.MaxFunEvals = 2500;
-pf.fsolveOpts.FunctionTolerance = 1e-6;
+pf.fsolveOpts.FunctionTolerance = 1e-10;
 p.fsolveOpts.StepTolerance = 1e-10;
-p.fsolveOpts.OptimalityTolerance = 1e-6;
+p.fsolveOpts.OptimalityTolerance = 1e-10;
 p.fsolveOpts.Display = 'iter';
 
 
@@ -115,7 +115,7 @@ inits = [inits(1:2:length(inits)/2); x; inits( 2:2:length(inits)/2); y;
 %     1.1452];
 %+ (rand(17, 1) - 0.5) * 0.00
 % guess = [    3.8208
-n = 4
+n = 2
 p.G = 1;
 p.m = ones(n+1, 1);
 if p.showSolverGuesses
@@ -169,29 +169,35 @@ guess = [xs; ys; xd; yd; t];
 % load('5body_legit.mat', 'solution');
 % 
 % guess = solution + (rand(length(solution), 1) - 0.5) * 0.8;
+% solution(3:3:end) = [];
+% solution(3:3:end) = [];
+
 guess = solution
-% guess = [    0.9634
-%     0.0084
-%    -0.9582
-%    -0.6006
-%     0.3042
-%     1.0103
-%     0.3202
-%    -0.8124
-%     0.2774
-%     0.5922
-%     0.0886
-%    -0.5375
-%    -0.5326
-%     0.0992
-%     0.5939
-%     0.2678
-%     2.3791]
+%  guess = [ 
+%    0.231207525091770
+%    0.748076937499224
+%    0.513713568169772
+%    2.172193384661411
+%    2.458450131975315
+%    1.810083811060802
+%   -0.277383841678222
+%    0.238634483924694
+%    0.038752096413156
+%   -1.605265058889184
+%    0.921053093240326
+%    0.684212070473373
+%    3.282139429420875 ]% + (rand(13,1) - 0.5) * 0.001
+% guess(1:3) = guess(1:3) - mean(guess(1:3));
+% guess(4:6) = guess(4:6) - mean(guess(4:6));
+% 
+% guess(7:9) = guess(7:9) - mean(guess(7:9));
+% guess(10:12) = guess(10:12) - mean(guess(10:12));
+
 
 try
 [solution, fval, flag] = fsolve(@(x)(toSolve(x,p,solvePlots)),guess,p.fsolveOpts)
 
-if flag > 0
+ if flag > 0
    disp('WE GOT ONE'); 
    save(['sol',num2str(i)]);
 elseif fval < 0.05 || flag == 0

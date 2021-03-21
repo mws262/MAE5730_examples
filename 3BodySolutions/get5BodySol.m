@@ -1,5 +1,5 @@
 function [tend, inits] = get5BodySol(solNum)
-% NOTE: the order here is [all x, all y, all xd, all yd], which is
+% NOTE: tm)he order here is [all x, all y, all xd, all yd], which is
 % different from the older 3-body code that was [x1, y1, x2, y2, ... xd1,
 % xd2...];
 switch solNum
@@ -200,9 +200,10 @@ switch solNum
         tend = 2.205663229274498;
              
 end
-
+p.G = 1;
+p.m = ones(5, 1);
 opt = odeset('RelTol', 1e-10, 'AbsTol', 1e-10);
-[~, zarray] = ode45(@nbody_rhs, [0,  tend], inits, opt);
+[~, zarray] = ode45(@nbody_rhs, [0,  tend], inits, opt, p);
 
 for i = 1:length(inits)/4
     pl = plot(zarray(:, i), zarray(:, length(inits)/4 + i));
@@ -210,6 +211,10 @@ for i = 1:length(inits)/4
     plot(zarray(1, i), zarray(1, length(inits)/4 + i), '.', 'MarkerSize', 25, 'Color', pl.Color);
     
 end
+ax = gca;
+ax.Visible = 'off';
+fig = gcf;
+fig.Color = [1,1,1];
 axis equal
 
 end

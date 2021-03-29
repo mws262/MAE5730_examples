@@ -12,7 +12,7 @@ for i = 1:n
     hold on
 end
 
-axis([-2,2,-2,2]);
+axis([-3,3,-3,3]);
 axis equal;
 hold off;
 

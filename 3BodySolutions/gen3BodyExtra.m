@@ -167,20 +167,6 @@ switch numSol
             0.769491411789519];
             tend = 3.080432685887425;
     case 12
-        inits = [   1.800540690222907
-            2.110943057183963
-            1.941099135980881
-            1.997338637322647
-            2.342865470649055
-            1.373241422644721
-            -0.316679113695194
-            0.076354604197237
-            0.240324509497963
-            -1.367537319572705
-            0.931108818521219
-            0.436428501051503];
-            tend = 2.617873664499389;
-    case 13
         inits = [   1.105103555284996
             1.672166960497609
             1.467608180357707
@@ -194,28 +180,15 @@ switch numSol
             0.423099810919655
             0.898649689824217];
             tend = 3.517410965522297;
-    case 14
-        % Bug duplicate?
-        inits = [   1.483341030942327
-            1.869695066737272
-            1.758708805474065
-            1.480084368788289
-            1.984814630482435
-            0.997663915802662
-            -0.307314616768145
-            -0.061931715966032
-            0.369246332734181
-            -1.390778243214924
-            0.707094939064143
-            0.683683304150783];
-            tend = 2.625679789658065;
 end
-
+return;
 p.G = 1;
 p.m = ones(3, 1);
 opt = odeset('RelTol', 1e-10, 'AbsTol', 1e-10);
 [~, zarray] = ode45(@nbody_rhs, [0,  tend], inits, opt, p);
-close all;
+
+figure;
+
 for i = 1:length(inits)/4
     pl = plot(zarray(:, i), zarray(:, length(inits)/4 + i));
     hold on;
@@ -227,12 +200,13 @@ ax.Visible = 'off';
 fig = gcf;
 fig.Color = [1,1,1];
 axis equal
+save2pdf(['3body_extra', num2str(numSol)], fig, 300);
 
 p1 = zarray(:, [1,4]);
 p2 = zarray(:, [2,5]);
 p3 = zarray(:, [3,6]);
 
-figure;
+% figure;
 
 rho = 1/sqrt(2) * (p1 - p2);
 lambda = 1/sqrt(6) * (p1 + p2 - 2*p3);
@@ -243,17 +217,17 @@ Rsq = rho_magsq + lambda_magsq;
 
 n = [-2 * dot(rho, lambda, 2)./Rsq, (lambda_magsq - rho_magsq)./Rsq, sum(2 * cross([rho, zeros(size(rho,1), 1)], [lambda, zeros(size(rho,1), 1)]), 2)./Rsq];
 
-fig = figure;
-fig.Color = [1,1,1];
-ax = axes;
-shapeSphPl = plot3(n(:, 1), n(:,2), n(:, 3), 'r');
-shapeSphPl.LineWidth = 4;
-hold on;
-[Xsph, Ysph, Zsph] = sphere(25);
-sph = surf(0.99*Xsph, 0.99*Ysph, 0.99*Zsph);
-sph.EdgeAlpha = 0.3;
-sph.FaceAlpha = 0.5;
-axis equal
-ax.Visible = false;
+% fig = figure;
+% fig.Color = [1,1,1];
+% ax = axes;
+% shapeSphPl = plot3(n(:, 1), n(:,2), n(:, 3), 'r');
+% shapeSphPl.LineWidth = 4;
+% hold on;
+% [Xsph, Ysph, Zsph] = sphere(25);
+% sph = surf(0.99*Xsph, 0.99*Ysph, 0.99*Zsph);
+% sph.EdgeAlpha = 0.3;
+% sph.FaceAlpha = 0.5;
+% axis equal
+% ax.Visible = false;
 
 end

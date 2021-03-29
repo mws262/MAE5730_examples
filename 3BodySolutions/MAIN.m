@@ -40,18 +40,19 @@ p.showSolverGuesses = true; % Plot the tested solutions as the solver is going.
 
 % Solver/integration options
 p.odeOpts = odeset;
-p.odeOpts.RelTol = 1e-10;
-p.odeOpts.AbsTol = 1e-10;
+p.odeOpts.RelTol = 1e-6;
+p.odeOpts.AbsTol = 1e-6;
 
 p.fsolveOpts = optimset('fsolve');
 p.fsolveOpts.Algorithm = 'levenberg-marquardt'; % fsolve will default to this anyway after a few seconds and a warning message.
-p.fsolveOpts.TolX = 1e-10;
-p.fsolveOpts.TolFun = 1e-10;
+p.fsolveOpts.TolX = 1e-6;
+p.fsolveOpts.TolFun = 1e-6;
 
-p.fsolveOpts.MaxFunEvals = 2500;
-pf.fsolveOpts.FunctionTolerance = 1e-10;
-p.fsolveOpts.StepTolerance = 1e-10;
-p.fsolveOpts.OptimalityTolerance = 1e-10;
+p.fsolveOpts.MaxFunEvals = 1000000;
+p.fsolveOpts.MaxIterations = 1e4;
+pf.fsolveOpts.FunctionTolerance = 1e-6;
+p.fsolveOpts.StepTolerance = 1e-6;
+p.fsolveOpts.OptimalityTolerance = 1e-6;
 p.fsolveOpts.Display = 'iter';
 
 
@@ -115,7 +116,7 @@ inits = [inits(1:2:length(inits)/2); x; inits( 2:2:length(inits)/2); y;
 %     1.1452];
 %+ (rand(17, 1) - 0.5) * 0.00
 % guess = [    3.8208
-n = 2
+n = 5
 p.G = 1;
 p.m = ones(n+1, 1);
 if p.showSolverGuesses
@@ -160,12 +161,84 @@ for i = 1:1000000
 
 ang = linspace(0, 2 * pi, n+2)';
 ang = ang(1:end-2);
-xs = cos(ang) + (rand(n,1) - 0.5) * 1.0;
-ys = sin(ang) + (rand(n,1) - 0.5) * 1.0;
-xd = -sin(ang) .* (rand(n,1) - 0.5) * 1.5 + cos(ang) .* (rand(n,1) - 0.5) * 0.3;
-yd = cos(ang) .* (rand(n,1) - 0.5) * 1.5 + sin(ang) .* (rand(n,1) - 0.5) * 0.3;
-t = 3 + (rand() - 0.5) * 2;
+xs = cos(ang) * 0.8 + (rand(n,1) - 0.5) * 0.2;
+ys = sin(ang) * 0.8 + (rand(n,1) - 0.5) * 0.2;
+xd = -sin(ang).*(rand(n,1)-0.5)*1 + cos(ang) .* (rand(n,1) - 0.5) * 0.4;%(rand(n,1) - 0.5) * 1;%-sin(ang) .* (rand(n,1) - 0.5) * 1 + cos(ang) .* (rand(n,1) - 0.5) * 0.3;
+yd = cos(ang) .*(rand(n,1)-0.5)*1+  sin(ang) .* (rand(n,1) - 0.5) * 0.4; %(rand(n,1) - 0.5) * 1;%cos(ang) .* (rand(n,1) - 0.5) * 1 + sin(ang) .* (rand(n,1) - 0.5) * 0.3;
+t = 2 +(rand() - 0.5) * 4;
 guess = [xs; ys; xd; yd; t];
+% guess =    [ 0.950795063968102
+%             0.544385642003968
+%             -0.633451356772128
+%             -0.796908228678538
+%             -0.064821120521404
+%             rand-0.5
+%             -0.418347498938976
+%             0.723114686929297
+%             0.690136719398253
+%             -0.363408902318607
+%             -0.631495005069967
+%             rand-0.5
+%             0.632027154716209
+%             -0.950808024410764
+%             -1.151918413383543
+%             1.218448607565933
+%             0.252250675512165
+%             rand-0.5
+%             1.178651051459998
+%             0.847959626169099
+%             -0.750617599059847
+%             -0.914328799988811
+%             -0.361664278580438
+%             rand-0.5
+%             4.876615128287713 + rand - 0.5];
+%         guess = guess + (rand(25,1) - 0.5) * 0.1;
+            
+% p.x1 = 0.138905211470271;
+% p.y1 = 0.532372995229495;
+% guess = [
+%  -0.208018307891517
+%    0.196130973685997
+%   -0.260451741351707
+%   -0.199884308688983
+%    0.053069339930936
+%    0.149108515604518
+%    0.417275748636172
+%   -0.806913892646630
+%    2.170800108920224
+%   -1.139243913710775
+%   -2.409682783481383
+%    0.204629313278135
+%    0.189754885405225
+%   -0.427682129057363
+%    2.508837439236679
+%    1.964544883552872
+%   -4.246276047195298
+%   -0.158226979705131
+%    0.628464546769875
+% ] %+ (rand(19,1) - 0.5) * 0.002;
+% guess = solution
+% guess = [    1.835250525944939
+%    0.953957979481942
+%   -0.581544745522953
+%   -0.596288109102064
+%    1.316027038909812
+%   -1.027634387765892
+%    0.844924577139499
+%   -1.746280212226982
+%   -1.319661915052643
+%    1.562043138177679
+%   -0.275426442021154
+%    0.426151232505249
+%   -1.379917105658983
+%    1.078527279631986
+%   -0.867968952220059
+%    0.050799523748053
+%    1.326507293686833
+%    0.513618003702990
+%   -0.675600128031694
+%   -1.599538345434582
+%    2.584792582146034] + (rand(21,1) + 0.5) * 0.5;
 % load('5body_legit.mat', 'solution');
 % 
 % guess = solution + (rand(length(solution), 1) - 0.5) * 0.8;
@@ -190,23 +263,75 @@ guess = solution
 % guess(1:3) = guess(1:3) - mean(guess(1:3));
 % guess(4:6) = guess(4:6) - mean(guess(4:6));
 % 
-% guess(7:9) = guess(7:9) - mean(guess(7:9));
+% guess(7:9) = guess(7:9) - mean15(guess(7:9));
 % guess(10:12) = guess(10:12) - mean(guess(10:12));
 
+% guess = [
+% 
+%    0.920147352166639
+%    0.055431727046081
+%   -1.248495987565317
+%    0.990874678534295
+%    0.279864545552215
+%   -0.908953130880876
+%    0.349336967219493
+%    0.730434769382831
+%   -1.251558455452534
+%    0.301166099498302
+%   -0.791192765700813
+%   -0.716411475490073
+%   -1.894059488909541
+%    0.407122760659828
+%    1.657607313633092
+%    1.688307059879823
+%    1.550154820653592
+%    0.365141914776893
+%   -1.354201084141323
+%   -1.588298918179439
+%    1.305533630208551] + (rand(21,1) - 0.5) * 0.1
+guess = [ 
+  -0.404977403847436
+  -0.276755998918042
+  -0.317542576537033
+  -0.445570086346064
+   1.095984566504395
+   0.266072871356591
+  -0.279172901903940
+   0.305956783055326
+   0.050178771864351
+  -1.220146515499158
+   2.469474496108509
+   0.263528227580372
+  -4.078615797231853
+   1.712932262449987
+  -0.214497829995114
+   0.824429388386270
+   1.628823889805647
+   0.476917517263377
+  -4.036049269223803
+   0.340044595478532
+   2.318058013752618
+]+ (rand(21,1) - 0.5) * 0.1;
 
-try
+try    
+    defect = toSolve(guess,p,solvePlots);
+    def = defect * defect'
+%     if def > 100
+%         continue;
+%     end
+    disp('trying this one');
 [solution, fval, flag] = fsolve(@(x)(toSolve(x,p,solvePlots)),guess,p.fsolveOpts)
 
- if flag > 0
+if flag > 0
    disp('WE GOT ONE'); 
    save(['sol',num2str(i)]);
-elseif fval < 0.05 || flag == 0
+elseif sum(abs(fval)) < 0.2 || flag == 0
       disp('maybe'); 
    save(['maybe',num2str(i)]);  
 end
 catch MEException
     disp('ere');
-    throw(MEException)
+%      throw(MEException)
 end
 end
 

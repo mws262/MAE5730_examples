@@ -25,7 +25,8 @@ periodsToRun = 5; % How many periods of the solution to run if we're just viewin
 % inits = [initPos,initVel];
 
 [tend,inits] = getSolutionNum(solutionNumber); % This gets one of my previously-found solutions. You can try other things as well.
-
+inits = [1, 0, -1, 0, 0, 0, ...
+    0, sqrt(8/9), 0, -sqrt(8/9), 0, 0]
 guess = [tend,inits];
 
 %%%% Set up system parameters %%%%
